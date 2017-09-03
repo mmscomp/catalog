@@ -1,0 +1,19 @@
+{% include "main.html" %}
+
+<body>
+{% include "header.html" %}
+<h2> Are you sure you want to delete {{entertain.name}}? </h2>
+
+<form action="{{url_for('deleteEntertainment',  name = entertain.name)}}" method = 'post'>
+
+	<button type="submit" class="btn btn-default delete" id="submit" type="submit">
+	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+</form>
+	<a href = '{{url_for('showEntertainmentItem', name = entertain.name)}}'>
+		<button class="btn btn-default delete">
+		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+	</a>
+
+
+</body>
+</html>

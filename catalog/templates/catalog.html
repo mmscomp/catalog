@@ -1,0 +1,44 @@
+{% include "main.html" %}
+<body>
+{% include "header.html" %}
+<div class="cantainer">
+
+<div class="catalog">
+<div class="categorie">
+               <a href = "{{url_for('showSports')}}">
+                                                <h3>Sports</h3></a>
+               <a href = "{{url_for('showEntertainment')}}">
+                                                <h3>Entertainment</h3></a>
+               <a href = "{{url_for('showEducation')}}">
+                                                <h3>Education</h3></a>
+               <a href = "{{url_for('showBusiness')}}">
+                                                <h3>Business</h3></a>
+               <a href = "{{url_for('showDiary')}}">
+                                                <h3>Diary</h3></a>
+                
+</div>
+</div>
+<!--
+<div class="category">
+</div>
+
+<div class="item">
+</div>
+</div>
+
+<div class = 'flash'>
+                      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+-->
+</div>
+
+</body>
+</html>

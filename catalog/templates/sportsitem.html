@@ -1,0 +1,59 @@
+{% include "main.html" %}
+<body>
+{% include "header.html" %}
+<div class="cantainer">
+
+<div class="catalog">
+<div class="categorie">
+               <a href = "{{url_for('showSports')}}">
+                                                <h3>Sports</h3></a>
+               <a href = "{{url_for('showEntertainment')}}">
+                                                <h3>Entertainment</h3></a>
+               <a href = "{{url_for('showEducation')}}">
+                                                <h3>Education</h3></a>
+               <a href = "{{url_for('showBusiness')}}">
+                                                <h3>Business</h3></a>
+               <a href = "{{url_for('showDiary')}}">
+                                                <h3>Diary</h3></a>
+                
+</div>
+<div class="category">
+<h2>Sports<h2>
+{% for data in sports %}
+<a href="{{url_for('showSportsItem', name = data.name)}}">
+<h3>{{data.name}}</h3>
+</a>
+{%endfor%}
+</div>
+
+<div class="item">
+{% for data in sportsItem %}
+<h2>{{data.name}}</h2>
+<h3 id="intro">Description</h3>
+<p>{{data.description}}</p>
+<h3 id="fav">Favorite</h3>
+<p>{{data.favorite}}</p>
+<a href="{{url_for('editSports', name = data.name )}}">Edit</a>|
+<a href="{{url_for('deleteSports', name = data.name)}}">Delete</a>
+{%endfor%}
+</div>
+</div>
+
+<div class = 'flash'>
+                      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+</div>
+<footer>
+<a href="{{url_for('showCatalog')}}">go Back</a>
+</footer>
+
+</body>
+</html>
