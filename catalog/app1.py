@@ -622,7 +622,7 @@ def newSports():
         flash('New Sports category %s Successfully Created' % newSports.name)
         return redirect(url_for('showSports'))
     else:
-        return render_template('newSports.html')
+        return render_template('newsports.html')
 
 
 @app.route('/catalog/sports/edit/<name>', methods=['GET', 'POST'])
