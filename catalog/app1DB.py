@@ -104,6 +104,28 @@ class Business(Base):
             'favorite': self.favorite,
         }
 
+class Read(Base):
+    __tablename__ = 'books'
+
+    name  = Column(String(80), nullable=False)
+    id = Column(Integer, primary_key=True)
+    description = Column(String(230), nullable=True)
+    favorite = Column(String(200), nullable=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
+
+    @property
+    def serialize(self):
+
+        """Return object data in easily serializeable format"""
+
+        return {
+            'name': self.name,
+            'id': self.id,
+            'description': self.description,
+            'favorite': self.favorite,
+        }
+
 class Diary(Base):
     __tablename__ = 'diary'
 
