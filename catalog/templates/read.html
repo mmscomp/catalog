@@ -15,16 +15,17 @@
                                                 <h3>Business</h3></a>
                <a href = "{{url_for('showDiary')}}">
                                                 <h3>Diary</h3></a>
-                
+               <a href = "{{url_for('showRead')}}">
+                                                <h3>Read</h3></a>                
 </div>
 <div class="category">
-<h2>Education<h2>
-{% for data in education %}
-<a href="{{url_for('showEducationItem', name = data.name)}}">
+<h2>Read<h2>
+{% for data in read %}
+<a href="{{url_for('showReadItem', name = data.name)}}">
 <h3>{{data.name}}</h3>
 </a>
 {%endfor%}
-<a href="{{url_for('newEducation' )}}">Create</a>
+<a href="{{url_for('newRead' )}}">Create</a>
 </div>
 <!--
 <div class="item">

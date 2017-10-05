@@ -15,19 +15,20 @@
                                                 <h3>Business</h3></a>
                <a href = "{{url_for('showDiary')}}">
                                                 <h3>Diary</h3></a>
-                
+               <a href = "{{url_for('showRead')}}">
+                                                <h3>Read</h3></a>                
 </div>
 <div class="category">
-<h2>Education<h2>
-{% for data in education %}
-<a href="{{url_for('showEducationItem', name = data.name)}}">
+<h2>Read<h2>
+{% for data in read %}
+<a href="{{url_for('showReadItem', name = data.name)}}">
 <h3>{{data.name}}</h3>
 </a>
 {%endfor%}
 </div>
 
 <div class="item">
-{% for data in educationItem %}
+{% for data in readItem %}
 <h2>{{data.name}}</h2>
 <h3 id="intro">Description</h3>
 <p>{{data.description}}</p>
@@ -52,7 +53,7 @@
 </div>
 </div>
 <footer>
-<a href="{{url_for('showEducation')}}">go Back</a>
+<a href="{{url_for('showRead')}}">go Back</a>
 </footer>
 
 </body>

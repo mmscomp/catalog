@@ -12,7 +12,7 @@ from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
 from app1DB import engine, Base, User,  Sports, Entertainment,\
-                   Education, Business, Diary
+                   Education, Business, Diary, Read
 
 from oauth2client.client import flow_from_clientsecrets
 
