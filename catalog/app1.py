@@ -452,11 +452,6 @@ def showCatalog():
     #    catalog = session.query(Catalog).order_by(asc(Catalog.name)).all()
     email = login_session.get('email')
     return render_template('catalog.html')
-    if 'username' not in login_session:
-        return render_template('publiccatalog.html')
-    else:
-        return render_template('catalog.html', email=email)
-
 
 # Sports
 @app.route('/catalog/sports/')
@@ -577,6 +572,32 @@ def showEducationItem(name):
                                educationItem=educationItem,
                                creator_id=creator.id)
 
+@app.route('/catalog/read/')
+def showRead():
+    read = session.query(Read).order_by(asc(Read.name))
+    if 'username' not in login_session:
+        return render_template('publicread.html', read=read)
+    else:
+        return render_template('read.html', read=read)
+
+
+@app.route('/catalog/read/<name>')
+def showReadItem(name):
+    read = session.query(Read).order_by(asc(Read.name))
+    readItemUser = session.query(Read).filter_by(name=name).one()
+    creator = getUserInfo(readItemUser.user_id)
+    readItem = session.query(Read).filter_by(name=name).all()
+
+    if 'username' not in login_session or creator.id != \
+       login_session['user_id']:
+        return render_template('publiceducationitem.html',
+                               read=read,
+                               readItem=readItem)
+    else:
+        return render_template('readitem.html',
+                               read=read,
+                               readItem=readItem,
+                               creator_id=creator.id)
 
 @app.route('/catalog/diary/')
 def showDiary():
