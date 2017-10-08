@@ -896,6 +896,25 @@ def editEducation(name):
         return render_template('editEducation.html',
                                education=editedEducation)
 
+# Read category
+@app.route('/catalog/education/new/', methods=['GET', 'POST'])
+def newRead():
+
+    if 'username' not in login_session:
+        return redirect('/login')
+    if request.method == 'POST':
+        newRead = Read(name=request.form['name'],
+                                 description=request.form['description'],
+                                 favorite=request.form['favorite'],
+                                 user_id=login_session['user_id'])
+        session.add(newRead)
+        session.commit()
+        flash('New Read Category Successfully Created')
+        return redirect(url_for('showRead'))
+    else:
+        return render_template('newRead.html')
+
+
 
 # Delete an Education category
 @app.route('/category/<name>/delete/', methods=['GET', 'POST'])
