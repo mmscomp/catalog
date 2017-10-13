@@ -896,25 +896,6 @@ def editEducation(name):
         return render_template('editEducation.html',
                                education=editedEducation)
 
-# Read category
-@app.route('/catalog/education/new/', methods=['GET', 'POST'])
-def newRead():
-
-    if 'username' not in login_session:
-        return redirect('/login')
-    if request.method == 'POST':
-        newRead = Read(name=request.form['name'],
-                                 description=request.form['description'],
-                                 favorite=request.form['favorite'],
-                                 user_id=login_session['user_id'])
-        session.add(newRead)
-        session.commit()
-        flash('New Read Category Successfully Created')
-        return redirect(url_for('showRead'))
-    else:
-        return render_template('newRead.html')
-
-
 
 # Delete an Education category
 @app.route('/category/<name>/delete/', methods=['GET', 'POST'])
@@ -937,7 +918,56 @@ def deleteEducation(name):
         return redirect(url_for('showEducation', name=name))
     else:
         return render_template('deleteEducation.html',
-                               entertain=eduToDelete)
+                               education=eduToDelete)
+
+
+# Read category
+@app.route('/catalog/read/new/', methods=['GET', 'POST'])
+def newRead():
+
+    if 'username' not in login_session:
+        return redirect('/login')
+    if request.method == 'POST':
+        newRead = Read(name=request.form['name'],
+                                 description=request.form['description'],
+                                 favorite=request.form['favorite'],
+                                 user_id=login_session['user_id'])
+        session.add(newRead)
+        session.commit()
+        flash('New Read Category Successfully Created')
+        return redirect(url_for('showRead'))
+    else:
+        return render_template('newRead.html')
+
+# Edit a Read category
+@app.route('/catalog/read/edit/<name>', methods=['GET', 'POST'])
+def editRead(name):
+    editedRead = session.query(
+        Read).filter_by(name=name).one()
+    if 'username' not in login_session:
+        return redirect('/login')
+    if editedRead.user_id != login_session['user_id']:
+
+        return "<script>function myFunction() {alert('You are not" + \
+               " authorized to edit this category. Please create your" + \
+               "own category in order to edit.');}</script><body" + \
+               "onload='myFunction()'>"
+
+    if request.method == 'POST':
+
+        if request.form['name']:
+            editedRead.name = request.form['name']
+        if request.form['description']:
+            editedRead.description = request.form['description']
+        if request.form['favorite']:
+            editedRead.favorite = request.form['favorite']
+            session.add(editedRead)
+            session.commit()
+            flash('Read Successfully Edited %s' % editedRead.name)
+            return redirect(url_for('showRead'))
+    else:
+        return render_template('editRead.html',
+                               read=editedRead)
 
 
 # Diary category
