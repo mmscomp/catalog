@@ -969,6 +969,29 @@ def editRead(name):
         return render_template('editRead.html',
                                read=editedRead)
 
+# Delete a read category
+@app.route('/category/<name>/delete/', methods=['GET', 'POST'])
+def deleteRead(name):
+    readToDelete = session.query(
+        Read).filter_by(name=name).one()
+    if 'username' not in login_session:
+        return redirect('/login')
+    if readToDelete.user_id != login_session['user_id']:
+
+        return "<script>function myFunction() {alert" + \
+               "('You are not authorized to delete this category." + \
+               " Please create your own category in order to delete.'" + \
+               ");}</script><body onload='myFunction()''>"
+
+    if request.method == 'POST':
+        session.delete(readToDelete)
+        flash('%s Successfully Deleted' % readToDelete.name)
+        session.commit()
+        return redirect(url_for('showRead', name=name))
+    else:
+        return render_template('deleteRead.html',
+                               read=readToDelete)
+
 
 # Diary category
 @app.route('/catalog/diary/new/', methods=['GET', 'POST'])
