@@ -752,7 +752,7 @@ def editEntertainment(name):
 
 
 # Delete an Entertainment category
-@app.route('/category/<name>/delete/', methods=['GET', 'POST'])
+@app.route('/category/entertainment/<name>/delete/', methods=['GET', 'POST'])
 def deleteEntertainment(name):
     enterToDelete = session.query(
         Entertainment).filter_by(name=name).one()
@@ -825,7 +825,7 @@ def editBusiness(name):
 
 
 # Delete a business category
-@app.route('/category/<name>/delete/', methods=['GET', 'POST'])
+@app.route('/category/business/<name>/delete/', methods=['GET', 'POST'])
 def deleteBusiness(name):
     bussinessToDelete = session.query(
         Business).filter_by(name=name).one()
@@ -898,7 +898,7 @@ def editEducation(name):
 
 
 # Delete an Education category
-@app.route('/category/<name>/delete/', methods=['GET', 'POST'])
+@app.route('/category/education/<name>/delete/', methods=['GET', 'POST'])
 def deleteEducation(name):
     eduToDelete = session.query(
         Education).filter_by(name=name).one()
@@ -970,8 +970,9 @@ def editRead(name):
                                read=editedRead)
 
 # Delete a read category
-@app.route('/category/<name>/delete/', methods=['GET', 'POST'])
+@app.route('/category/read/<name>/delete/', methods=['GET', 'POST'])
 def deleteRead(name):
+    print 999
     readToDelete = session.query(
         Read).filter_by(name=name).one()
     if 'username' not in login_session:
@@ -1042,7 +1043,7 @@ def editDiary(name):
 
 
 # Delete a diary category
-@app.route('/category/<name>/delete/', methods=['GET', 'POST'])
+@app.route('/category/diary/<name>/delete/', methods=['GET', 'POST'])
 def deleteDiary(name):
     diaryToDelete = session.query(
         Diary).filter_by(name=name).one()
