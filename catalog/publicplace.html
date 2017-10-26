@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Paris</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <header>
+        <h2>Select   Location</h2>
+    </header>
+    <!--  <div class="container">-->
+    <div id="menu">
+        <div class="inSelect">
+          <!--  <p>
+                <select data-bind="options: locations, 
+                optionsText: 'name', 
+                value: selectedName, 
+                optionsCaption: ''"></select>
+            </p>
+            <div data-bind="visible: selectedName">
+
+                <span data-bind="with: locations"></span>
+                <a href="#" data-bind="click: function(){$root.clickMeDOM(selectedText())}">
+                    <p data-bind="text: selectedText"></p>
+                </a>
+                <span data-bind="with: selectedText"></span>
+                <span data-bind="text: selectedName() ? $root.filterMe(selectedText()):''"></span>
+-->
+            </div>
+
+            <!-- ko if: !$root.selectedName() -->
+<!--            <ul data-bind="foreach: locations">
+                <li>
+                    <a href="#" data-bind="click: function() {$root.clickMeDOM(name)}">
+                        <span data-bind="text: name "></span>
+                    </a>
+                    <span data-bind="text: name ? $root.allMarkers(name):''"></span>
+
+                </li>
+            </ul>
+-->
+            <!-- /ko -->
+      <a href="#" data-bind="click: function() {$root.findCity(city)}">
+        <span data-bind = "text: city"></span><br>
+      </a>
+        <input data-bind="textInput: city"> <!--"value: city, valueUpdate: 'afterkeydown'">-->
+  <!-- <span data-bind="text: city ? $root.findCity(city):''"></span>-->
+        </div>
+
+        <div id="map"></div>
+    </div>
+    </div>
+    <!--  </div> -->
+
+    <script src="/static/bower_component/knockout.js"></script>
+    <script src="/static/js/libs/jquery.min.js"></script>
+    <script src="/static/js/data.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB9gvHI8M3MazFFG5ih5NlvJjG6xUrkElY&callback=initMap" async defer onerror="googleError()">
+    </script>
+
+
+</body>
+
+</html>
