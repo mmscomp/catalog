@@ -11,51 +11,37 @@
 
 <body>
     <header>
-        <h2>Select   Location</h2>
+        <h2>Select a  Location</h2>
     </header>
-    <!--  <div class="container">-->
+   
     <div id="menu">
+<div class="categorie">
+               <a href = "{{url_for('showSports')}}">
+                                                <h3>Sports</h3></a>
+               <a href = "{{url_for('showEntertainment')}}">
+                                                <h3>Entertainment</h3></a>
+               <a href = "{{url_for('showEducation')}}">
+                                                <h3>Education</h3></a>
+               <a href = "{{url_for('showBusiness')}}">
+                                                <h3>Business</h3></a>
+               <a href = "{{url_for('showDiary')}}">
+                                                <h3>Diary</h3></a>
+               <a href = "{{url_for('showRead')}}">
+                                                <h3>Read</h3></a>                
+               <a href = "{{url_for('showPlace')}}">
+                                                 <h3>Maps of Places</h3></a>
+
+</div>
         <div class="inSelect">
-          <!--  <p>
-                <select data-bind="options: locations, 
-                optionsText: 'name', 
-                value: selectedName, 
-                optionsCaption: ''"></select>
-            </p>
-            <div data-bind="visible: selectedName">
-
-                <span data-bind="with: locations"></span>
-                <a href="#" data-bind="click: function(){$root.clickMeDOM(selectedText())}">
-                    <p data-bind="text: selectedText"></p>
-                </a>
-                <span data-bind="with: selectedText"></span>
-                <span data-bind="text: selectedName() ? $root.filterMe(selectedText()):''"></span>
--->
-            </div>
-
-            <!-- ko if: !$root.selectedName() -->
-<!--            <ul data-bind="foreach: locations">
-                <li>
-                    <a href="#" data-bind="click: function() {$root.clickMeDOM(name)}">
-                        <span data-bind="text: name "></span>
-                    </a>
-                    <span data-bind="text: name ? $root.allMarkers(name):''"></span>
-
-                </li>
-            </ul>
--->
-            <!-- /ko -->
-      <a href="#" data-bind="click: function() {$root.findCity(city)}">
+    
+  <a href="#" data-bind="click: function() {$root.findCity(city)}">
         <span data-bind = "text: city"></span><br>
       </a>
-        <input data-bind="textInput: city"> <!--"value: city, valueUpdate: 'afterkeydown'">-->
-  <!-- <span data-bind="text: city ? $root.findCity(city):''"></span>-->
+        <input data-bind="textInput: city"> 
         </div>
 
         <div id="map"></div>
-    </div>
-    </div>
-    <!--  </div> -->
+     </div>
 
     <script src="/static/bower_component/knockout.js"></script>
     <script src="/static/js/libs/jquery.min.js"></script>

@@ -51,7 +51,7 @@
        }        
         .container {
             width: 90%;
-            height: 80%;
+            height: 100%;
             display: flex;
             flex-flow: column wrap;
             flex-grow: 1;
@@ -60,7 +60,7 @@
         
         .catalog {
             width: 73%;
-            height: auto;
+            height: 800px;
             display: flex;
             position: relative;
             /*    justify-content: center;*/
@@ -95,14 +95,19 @@
         
         .categorie {
             flex-basis: 20%;
+            height: 100%;
             background: lightgray;
             border-right: 1pt solid blue;
         }
-        
+       
         .category {
             flex: 0 0 20%;
             /*     border: 1pt solid black;*/
             background: lightblue;
+        }
+
+        .category > h2 {
+           color: blue;
         }
         
         .item {
@@ -150,10 +155,10 @@
         h3 {
             margin-bottom: 0px;
             padding-bottom: 0px;
-            font-size: 18px;
+            font-size: 20px;
             color: #4A4A4A;
             line-height: 12px;
-            text-decoration: underline;
+            text-decoration: none;
         }
         
         p {
@@ -172,10 +177,11 @@
             line-height: 24px;
         }
         
-        a {
+       .categorie >  a {
             font-size: 14px;
-            color: #0093B9;
+            color: blue;/*#0093B9;*/
             line-height: 17px;
+            text-decoration: none;
             vertical-align: center;
         }
         

@@ -17,7 +17,7 @@
                                                 <h3>Diary</h3></a>
                <a href = "{{url_for('showRead')}}">
                                                 <h3>Read</h3></a>                
-               <a href = "{{url_for('showplace')}}">
+               <a href = "{{url_for('showPlace')}}">
                                                  <h3>Maps of Places</h3></a>
 </div>
 <div class="category">
@@ -27,6 +27,7 @@
 <h3>{{data.name}}</h3>
 </a>
 {%endfor%}
+<br>
 <a href="{{url_for('newRead' )}}">Create</a>
 </div>
 <!--
