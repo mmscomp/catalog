@@ -6,14 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Paris</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css?q=1280549780">
 </head>
 
 <body>
-    <header>
-        <h2>Select a  Location</h2>
-    </header>
-   
+    <header class="header_container">
+    <div class="cat">
+      <a href="{{url_for('showCatalog')}}"> <h2>Category</h2></a>
+    </div>
+     <div class="sel">
+         <h2>Select   Location</h2>
+     </div>
+     <div class="loc">
+        <h2>Map</h2>
+     </div>
+   </header>
+    <!--  <div class="container">-->
     <div id="menu">
 <div class="categorie">
                <a href = "{{url_for('showSports')}}">
@@ -30,18 +38,19 @@
                                                 <h3>Read</h3></a>                
                <a href = "{{url_for('showPlace')}}">
                                                  <h3>Maps of Places</h3></a>
-
 </div>
+
         <div class="inSelect">
-    
-  <a href="#" data-bind="click: function() {$root.findCity(city)}">
+      <a href="#" data-bind="click: function() {$root.findCity(city)}">
         <span data-bind = "text: city"></span><br>
       </a>
-        <input data-bind="textInput: city"> 
+        <input data-bind="textInput: city"> <!--"value: city, valueUpdate: 'afterkeydown'">-->
+  <!-- <span data-bind="text: city ? $root.findCity(city):''"></span>-->
         </div>
 
         <div id="map"></div>
-     </div>
+    </div>
+    <!--  </div> -->
 
     <script src="/static/bower_component/knockout.js"></script>
     <script src="/static/js/libs/jquery.min.js"></script>

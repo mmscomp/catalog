@@ -110,7 +110,7 @@ $.ajax({
         markers.push(marker);
      //   viewModel.clickMarkers(marker.title);
         //
-        viewModel.clickMarker(marker.title);
+        viewModel.clickMarkers(marker);
     })
 }
 
@@ -193,13 +193,13 @@ viewModel.allMarkers = function showAll(name) {
 };
 
 // Response to a click on a marker
-viewModel.clickMarkers = function clickMarker(name) {
+viewModel.clickMarkers = function clickMarker(marker) {
 
-    for (var i = 0; i < markers.length; i++) {
-        if (markers[i].title === name) {
-            infoOpen(markers[i]);
-        }
-    }
+  //  for (var i = 0; i < markers.length; i++) {
+  //      if (markers[i].title === name) {
+            infoOpen(marker);
+    //    }
+  //  }
 };
 
 // Infowindow activation

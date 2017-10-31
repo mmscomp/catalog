@@ -12,13 +12,13 @@
 <body>
     <header class="header_container">
     <div class="cat">
-       <h2>Category</h2>
+      <a href="{{url_for('showCatalog')}}"> <h2>Category</h2></a>
     </div>
      <div class="sel">
          <h2>Select   Location</h2>
      </div>
      <div class="loc">
-         <h2>Map</h2>
+        <h2>Map</h2>
      </div>
    </header>
     <!--  <div class="container">-->
@@ -50,7 +50,7 @@
 
         <div id="map"></div>
     </div>
-    </div>
+    <!--  </div> -->
 
     <script src="/static/bower_component/knockout.js"></script>
     <script src="/static/js/libs/jquery.min.js"></script>
