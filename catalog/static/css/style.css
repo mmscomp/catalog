@@ -1,31 +1,70 @@
         html,
         body {
             font-family: Arial, sans-serif;
-            /*  height: 100%;
-            margin: 0;
-            padding: 0;
-         */
         }
         
         header {
-            background-color: black;
             width: 100%;
             color: red;
+            /*   display: flex;*/
         }
-        /*   .container {
+        
+        .sys {
             width: 100%;
-            height: auto;
+            height: 20px;
             display: flex;
             justify-content: space-around;
-            position: relative;
-            margin: auto;
-            overflow: hidden;
-            border: 1pt solid red;
-            /*  flex-flow: column wrap;
-           flex-grow: 1;
-           justify-content: center;
-           flex-direction: column;
-        }*/
+            background: blue;
+        }
+        
+        .fa {
+            width: 15%;
+            height: 100%;
+            color: red;
+        }
+        
+        .home {}
+        
+        .header-container {
+            width: 100%;
+            height: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            display: flex;
+            flex-basis: 50%;
+            justify-content: center;
+            background: #000;
+            border-right: 1pt solid blue;
+        }
+        
+        .cat {
+            width: 15%;
+        }
+        
+        .sel {
+            width: 25%;
+            text-align: left;
+        }
+        
+        .loc {
+            width: 75%;
+        }
+        
+        .cat>h2 {
+            text-align: left;
+            vertical-align: middle;
+            color: red;
+        }
+        
+        .sel>h2 {
+            text-align: left;
+            color: #fff;
+        }
+        
+        .loc {
+            text-align: center;
+            color: #fff;
+        }
         
         #menu {
             width: 100%;
@@ -42,77 +81,39 @@
         }
         
         #map {
-            flex: 0 0 80%;
+            width: 75%;
+            flex: 0 75%;
             margin-left: auto;
             position: relative;
             height: 800px;
         }
         
         .inSelect {
-            width: 100%;
+            width: 25%;
             background: lightblue;
         }
-
-       .inSelect > input {
-             width: 90%;
-             height: 3%;
-             font-family: 400;
-             font-weight: 2em;
-             font-size: 18pt;
-             
-          }
-span {
-        width: 100%;
-        font-size: 18pt;
-        text-align: right;
-}
-       
-/*
-        select {
+        
+        .inSelect>input {
             width: 100%;
-            height: 40px;
+            height: 3%;
+            font-family: 400;
+            font-weight: 2em;
+            font-size: 18pt;
+        }
+        
+        span {
+            width: 100%;
+            font-size: 18pt;
+            text-decoration: none;
+            text-align: right;
         }
         
         h3 {
-            color: white;
-        }
-        
-        p {
-            font-weight: 500;
-            font-size: 1.2em;
-        }
-        
-        a {
             text-decoration: none;
-            margin-left: 0;
-            color: white;
-        }
-        span {
-        color: white;
-       }        
-
-      input {
-         width: 100%;
-           }
-        li {
-            margin-left: 0;
-            list-style-type: none;
         }
         
-        #pixa {
-            width: 30%;
-            height: 20%;
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
         }
-        
-        #wiki {
-            width: 30%;
-            height: 10%;
-        }*/
-        /*#map {
-            posiiton: absolute;
-            left:340px;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            height: 800px;
-        }*/
