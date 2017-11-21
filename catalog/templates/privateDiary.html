@@ -22,14 +22,14 @@
 </div>
 <div class="category">
 <h2>Diary<h2>
-{% for data in diary %}
-<a href="{{url_for('showDiaryItem', name = data.name)}}">
+{% for data in pdiary %}
+<a href="{{url_for('showPrivateDiaryItem', id=data.user_id, name=data.name)}}">
 <h3>{{data.name}}</h3>
 </a>
 {%endfor%}
 <br>
-<h2>Create</h2>
-&emsp;<a href="{{url_for('newDiary' )}}">Public</a>&emsp;<a href="{{url_for('newPrivateDiary' )}}">Private</a>
+<h3>Create</h3>
+<a href="{{url_for('newDiary' )}}">Public</a>&emsp;<a href="{{url_for('newPrivateDiary' )}}">Private</a>
 </div>
 <!--
 <div class="item">

@@ -1,12 +1,35 @@
+<header class="container">
+
+        <ul>
+
+            <li>
+                <a href="{{url_for('showCatalog')}}"> <i class="fa fa-home"></i></a>
+            </li>
+            <li>
+                <a href="http://twitter.com"> <i class="fa fa-twitter"></i></a>
+            </li>
+            <li><a href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+            <li>
+                <a href="http://www.plus.google.com"> <i class="fa fa-google-plus"></i></a>
+            </li>
+            <li>
+                <a href="https://linkedin.com/in/manoj-shrestha"> <i class="fa fa-linkedin"></i></a>
+            </li>
+            <li><a href="https://www.github.com/mmscomp"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+
+
+        </ul>
+<header>
 <div class="header">
+
     <div class="header-left">
 		<a href="{{url_for('showCatalog')}}"><h1>Catalog</h1></a>
 	</div>
 	<div class="header-right">
 					{%if 'username' not in session %}
-			<a href="{{url_for('showLogin')}}">Click Here to Login </a></br>
+			<a href="{{url_for('showLogin')}}"><h3>Click Here to Login</h3> </a></br>
 			{% else %}
-			<a href="{{url_for('disconnect')}}">Logout </a>
+			<a href="{{url_for('disconnect')}}"><h3>Logout</h3></a>
 			{% endif %}
 		
 	</div>

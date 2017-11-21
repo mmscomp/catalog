@@ -16,33 +16,32 @@
                <a href = "{{url_for('showDiary')}}">
                                                 <h3>Diary</h3></a>
                <a href = "{{url_for('showRead')}}">
-                                                <h3>Read</h3></a>                 
+                                                <h3>Read</h3></a>                
                <a href = "{{url_for('showPlace')}}">
                                                  <h3>Maps of Places</h3></a>
 </div>
 <div class="category">
 <h2>Diary<h2>
-{% for data in diary %}
-<a href="{{url_for('showDiaryItem', name = data.name)}}">
+{% for data in pdiary %}
+<a href="{{url_for('showPrivateDiaryItem', id=data.user_id, name=data.name)}}">
 <h3>{{data.name}}</h3>
 </a>
 {%endfor%}
-<br>
-<h2>Create</h2>
-&emsp;<a href="{{url_for('newDiary' )}}">Public</a>&emsp;<a href="{{url_for('newPrivateDiary' )}}">Private</a>
 </div>
-<!--
+
 <div class="item">
-{% for data in entertainmentItem %}
+{% for data in pdiaryItem %}
+<h2>{{data.name}}</h2>
+<h3 id="intro">Title</h3>
+<p>{{data.title}}</p>
 <h3 id="intro">Description</h3>
 <p>{{data.description}}</p>
-<h3 id="fav">Favorite</h3>
-<p>{{data.favorite}}</p>
-<a href="{{url_for('editEntertainment', name = data.name )}}">Edit</a>|
-<a href="{{url_for('deleteEntertainment', name = data.name)}}">Delete</a>
+<h3 id="fav">Date</h3>
+<p>{{data.date}}</p>
+<a href="{{url_for('editPrivateDiary', name = data.name )}}">Edit</a>|
+<a href="{{url_for('deletePrivateDiary', name = data.name)}}">Delete</a>
 {%endfor%}
 </div>
--->
 </div>
 
 <div class = 'flash'>
@@ -58,7 +57,7 @@
 </div>
 </div>
 <footer>
-<a href="{{url_for('showCatalog')}}">go Back</a>
+<a href="{{url_for('showDiary')}}">go Back</a>
 </footer>
 
 </body>

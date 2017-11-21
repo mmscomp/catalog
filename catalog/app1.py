@@ -1,4 +1,3 @@
-import app1DB
 import string
 import random
 import json
@@ -12,7 +11,7 @@ from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
 from app1DB import engine, Base, User,  Sports, Entertainment,\
-                   Education, Business, Diary, Read
+                   Education, Business, Diary, Read, PrivateDiary
 
 from oauth2client.client import flow_from_clientsecrets
 
@@ -72,11 +71,11 @@ def fbconnect():
     print 74, access_token
     app_secret = json.loads(
 
-        open('../fb_client_secrets.json', 'r').read())['web']['app_secret']
-    print 78, access_token
+        open('fb_client_secrets.json', 'r').read())['web']['app_secret']
+    print 78, app_id, app_secret, access_token
     url = 'https://graph.facebook.com/oauth/access_token?grant_type=' + \
-          'fb_exchange_token&client_id=%s&client_secret=%s&' +\
-          'fb_exchange_token=%s' % (app_id, app_secret, access_token)
+          'fb_exchange_token&client_id="%s"&client_secret="%s"&' +\
+          'fb_exchange_token="%s"' % (app_id, app_secret, access_token)
     print 83, '\n\n\n', url
     h = httplib2.Http()
 
@@ -269,7 +268,7 @@ def gconnect():
     if stored_credentials is not None and gplus_id == stored_gplus_id:
         # added new line code
 
-        login_session['credentials'] = credentials
+        login_session['credentials'] = credentials.access_token # change from credentials
         response = make_response(json.dumps('Current user is already' +
                                             ' connected.'), 200)
 
@@ -389,7 +388,7 @@ def gdisconnect():
 
         return response
 
-    access_token = credentials.access_token
+    access_token = credentials    #.access_token
 
     url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token
 
@@ -447,6 +446,9 @@ def register():
 
 
 @app.route('/')
+def showWitch():
+    return render_template('index.html')
+
 @app.route('/catalog/')
 def showCatalog():
     #    catalog = session.query(Catalog).order_by(asc(Catalog.name)).all()
@@ -624,7 +626,47 @@ def showDiaryItem(name):
                                diaryItem=diaryItem,
                                creator_id=creator.id)
 
+@app.route('/catalog/privatediary/<id>')
+def showPrivateDiary(id):
+    diary = session.query(Diary).order_by(asc(Diary.name))
+    pdiary = session.query(PrivateDiary).order_by(asc(PrivateDiary.name)).filter_by(user_id=id).all()
+   # diaryItemUser = session.query(PrivateDiary).filter_by(name=name).one()
 
+    creator = getUserInfo(pdiary[0].user_id)#diaryItemUser.user_id)
+    
+    if 'username' not in login_session:
+        return render_template('publicdiary.html', diary=diary)
+    elif 'username'  in login_session and creator.id != \
+       login_session['user_id']:
+        return render_template('diary.html', diary=diary)
+    else:
+        return render_template('privateDiary.html', pdiary=pdiary)
+
+@app.route('/catalog/privatediaryitem/<id>/<name>')
+def showPrivateDiaryItem(id, name):
+    print 2000, id
+    diary = session.query(Diary).order_by(asc(Diary.name))
+   # pdiary = session.query(PrivateDiary).order_by(asc(PrivateDiary.name))
+    pdiary = session.query(PrivateDiary).order_by(asc(PrivateDiary.name)).filter_by(user_id=id).all()
+    
+  #  diaryItemUser = session.query(PrivateDiary).filter_by(name=name).one()
+    creator = getUserInfo(pdiary[0].user_id)
+    diaryItem = session.query(Diary).filter_by(name=name).all()
+    pdiaryItem = session.query(PrivateDiary).filter_by(name=name).all()
+
+    if 'username' not in login_session or creator.id != \
+       login_session['user_id']:
+        return render_template('publicdiaryitem.html',
+                               diary=diary, diaryItem=diaryItem)
+    elif 'username'  in login_session and creator.id != \
+       login_session['user_id']:
+        return render_template('diaryitem.html', diary=diary,
+                               diaryItem=diaryItem,
+                               creator_id=creator.id)
+    else:
+        return render_template('privatediaryitem.html', pdiary=pdiary,
+                               pdiaryItem=pdiaryItem,
+                               creator_id=creator.id)
 # Maps of Places
 @app.route('/catalog/publicplace.html/')
 def showPlace():
@@ -684,7 +726,7 @@ def editSports(name):
 # Delete a sports category
 
 
-@app.route('/category/<name>/delete/', methods=['GET', 'POST'])
+@app.route('/category/sports/<name>/delete/', methods=['GET', 'POST'])
 def deleteSports(name):
     sportsToDelete = session.query(
         Sports).filter_by(name=name).one()
@@ -759,7 +801,7 @@ def editEntertainment(name):
 
 
 # Delete an Entertainment category
-@app.route('/category/<name>/delete/', methods=['GET', 'POST'])
+@app.route('/category/entertainment/<name>/delete/', methods=['GET', 'POST'])
 def deleteEntertainment(name):
     enterToDelete = session.query(
         Entertainment).filter_by(name=name).one()
@@ -1019,11 +1061,85 @@ def newDiary():
     else:
         return render_template('newDiary.html')
 
-
+#
 @app.route('/catalog/diary/edit/<name>', methods=['GET', 'POST'])
 def editDiary(name):
-    editedDiaryi = session.query(
+    editedDiary = session.query(
         Diary).filter_by(name=name).one()
+    if 'username' not in login_session:
+        return redirect('/login')
+    if editedDiary.user_id != login_session['user_id']:
+
+        return "<script>function myFunction() {alert('You are not authorized" \
+               + " to edit this category. Please create your own category in" \
+               + " order to edit.');}</script><body onload='myFunction()'>"
+
+    if request.method == 'POST':
+
+        if request.form['name']:
+            editedDiary.name = request.form['name']
+        if request.form['description']:
+            editedDiary.description = request.form['description']
+        if request.form['favorite']:
+            editedDiary.favorite = request.form['favorite']
+            session.add(editedDiary)
+            session.commit()
+            flash('Diary element Successfully Edited %s' % editedDiary.name)
+            return redirect(url_for('showDiary'))
+    else:
+        return render_template('editDiary.html', diary=editedDiary)
+
+# Delete a diary category
+@app.route('/category/diary/<name>/delete/', methods=['GET', 'POST'])
+def deleteDiary(name):
+    diaryToDelete = session.query(
+        Diary).filter_by(name=name).one()
+    if 'username' not in login_session:
+        return redirect('/login')
+    if diaryToDelete.user_id != login_session['user_id']:
+
+        return "<script>function myFunction() {alert('You are not " + \
+               " authorized to delete this category. Please create" + \
+               " your own category in" + \
+               " order to delete.');}</script><body onload='myFunction()'>"
+
+    if request.method == 'POST':
+        session.delete(diaryToDelete)
+        flash('%s Successfully Deleted' % diaryToDelete.name)
+        session.commit()
+        return redirect(url_for('showDiary', name=name))
+    else:
+        return render_template('deleteDiary.html', diary=diaryToDelete)
+
+
+# Private diary category
+@app.route('/catalog/privatediary/new/', methods=['GET', 'POST'])
+def newPrivateDiary():
+    print 'username'
+    if 'username' not in login_session:
+        return redirect('/login')
+    oldDiary = session.query(PrivateDiary).filter_by(user_id = \
+                                          login_session['user_id']).all()
+#    print '1000', oldDiary[0].name 
+    if request.method == 'POST':
+        newDiary = PrivateDiary(name=request.form['name'],
+                         description=request.form['description'],
+                         title=request.form['title'],
+                         date=request.form['date'],
+                         user_id=login_session['user_id'])
+        session.add(newDiary)
+        session.commit()
+        print 1073, newDiary.name
+        flash('New Diary created. %s' % newDiary.name)
+        return redirect(url_for('showPrivateDiary', name=newDiary.name,
+                                id=newDiary.user_id))
+    else:
+        return render_template('newPrivateDiary.html', id = login_session['user_id'] )
+
+@app.route('/catalog/privatediary/edit/<name>', methods=['GET', 'POST'])
+def editPrivateDiary(name):
+    editedDiary = session.query(
+        PrivateDiary).filter_by(name=name).one()
     if 'username' not in login_session:
         return redirect('/login')
     if editedDiary.user_id != login_session['user_id']:
@@ -1049,10 +1165,10 @@ def editDiary(name):
 
 
 # Delete a diary category
-@app.route('/category/<name>/delete/', methods=['GET', 'POST'])
-def deleteDiary(name):
+@app.route('/category/privatediary/<name>/delete/', methods=['GET', 'POST'])
+def deletePrivateDiary(name):
     diaryToDelete = session.query(
-        Diary).filter_by(name=name).one()
+        PrivateDiary).filter_by(name=name).one()
     if 'username' not in login_session:
         return redirect('/login')
     if diaryToDelete.user_id != login_session['user_id']:
@@ -1095,6 +1211,6 @@ def disconnect():
 
 
 if __name__ == '__main__':
-    app.secret_key = 'super_secret_key'
+    app.secret_key = 'JamesBond007'
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
