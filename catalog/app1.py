@@ -1168,10 +1168,11 @@ def editPrivateDiary(name):
 @app.route('/category/privatediary/<name>/delete/', methods=['GET', 'POST'])
 def deletePrivateDiary(name):
     diaryToDelete = session.query(
-        PrivateDiary).filter_by(name=name).one()
+        PrivateDiary).filter_by(name=name).all()
     if 'username' not in login_session:
         return redirect('/login')
-    if diaryToDelete.user_id != login_session['user_id']:
+    id = diaryToDelete[0].user_id
+    if diaryToDelete[0].user_id != login_session['user_id']:
 
         return "<script>function myFunction() {alert('You are not " + \
                " authorized to delete this category. Please create" + \
@@ -1179,12 +1180,12 @@ def deletePrivateDiary(name):
                " order to delete.');}</script><body onload='myFunction()'>"
 
     if request.method == 'POST':
-        session.delete(diaryToDelete)
-        flash('%s Successfully Deleted' % diaryToDelete.name)
+        session.delete(diaryToDelete[0])
+        flash('%s Successfully Deleted' % diaryToDelete[0].name)
         session.commit()
-        return redirect(url_for('showDiary', name=name))
+        return redirect(url_for('showPrivateDiary', id=id, name=name))
     else:
-        return render_template('deleteDiary.html', diary=diaryToDelete)
+        return render_template('deletePrivateDiary.html', id=id, diary=diaryToDelete)
 
 
 # disconnect based on provider
