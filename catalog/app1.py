@@ -453,7 +453,12 @@ def showWitch():
 def showCatalog():
     #    catalog = session.query(Catalog).order_by(asc(Catalog.name)).all()
     email = login_session.get('email')
-    return render_template('catalog.html')
+    if 'username' in login_session:
+        id = login_session['user_id']
+    if 'username' not in login_session:
+        return render_template('catalog.html')
+    else:
+        return render_template('catalog.html', id=id)
 
 # Sports
 @app.route('/catalog/sports/')
@@ -631,12 +636,12 @@ def showPrivateDiary(id):
     diary = session.query(Diary).order_by(asc(Diary.name))
     pdiary = session.query(PrivateDiary).order_by(asc(PrivateDiary.name)).filter_by(user_id=id).all()
    # diaryItemUser = session.query(PrivateDiary).filter_by(name=name).one()
-
-    creator = getUserInfo(pdiary[0].user_id)#diaryItemUser.user_id)
+    if len(pdiary) != 0:
+        creator = getUserInfo(pdiary[0].user_id)#diaryItemUser.user_id)
     
     if 'username' not in login_session:
         return render_template('publicdiary.html', diary=diary)
-    elif 'username'  in login_session and creator.id != \
+    elif 'username'  in login_session and len(pdiary) > 0 and creator.id != \
        login_session['user_id']:
         return render_template('diary.html', diary=diary)
     else:
@@ -1122,7 +1127,13 @@ def newPrivateDiary():
                                           login_session['user_id']).all()
 #    print '1000', oldDiary[0].name 
     if request.method == 'POST':
-        newDiary = PrivateDiary(name=request.form['name'],
+        name=request.form['name']
+        for data in oldDiary:
+            if name== data.name:
+                flash('Name already taken; choose a different name')
+                return render_template('newPrivateDiary.html', id = login_session['user_id'] )
+             
+        newDiary = PrivateDiary(name=name,
                          description=request.form['description'],
                          title=request.form['title'],
                          date=request.form['date'],
