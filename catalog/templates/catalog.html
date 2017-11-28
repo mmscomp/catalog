@@ -4,6 +4,9 @@
 <div class="cantainer">
 
 <div class="catalog">
+<div class="arrow">
+</div>
+
 <div class="categorie">
                <a href = "{{url_for('showSports')}}">
                                                 <h3>Sports</h3></a>
@@ -13,8 +16,13 @@
                                                 <h3>Education</h3></a>
                <a href = "{{url_for('showBusiness')}}">
                                                 <h3>Business</h3></a>
+          {%if 'username' not in session %}
                <a href = "{{url_for('showDiary')}}">
                                                 <h3>Diary</h3></a>
+          {% else %}
+               <a href = "{{url_for('showPrivateDiary', id=id)}}">
+                                                <h3>Diary</h3></a>
+          {% endif %}
                <a href = "{{url_for('showRead')}}">
                                                 <h3>Read</h3></a>                
                <a href = "{{url_for('showPlace')}}">
