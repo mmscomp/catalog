@@ -558,7 +558,8 @@ def showEducation():
     if 'username' not in login_session:
         return render_template('publiceducation.html', education=education)
     else:
-        return render_template('education.html', education=education)
+        return render_template('education.html', education=education,
+                               id=login_session['user_id'])
 
 
 @app.route('/catalog/education/<name>')
