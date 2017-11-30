@@ -13,8 +13,14 @@
                                                 <h3>Education</h3></a>
                <a href = "{{url_for('showBusiness')}}">
                                                 <h3>Business</h3></a>
-               <a href = "{{url_for('showDiary')}}">
+               {% if 'username' in session %}
+               <a href = "{{url_for('showPrivateDiary', id=id)}}">
                                                 <h3>Diary</h3></a>
+               {% else %}
+               <a href="{{url_for('showDiary')}}">
+                                               <h3>Diary</h3></a>
+               {%endif%}
+
                <a href = "{{url_for('showRead')}}">
                                                 <h3>Read</h3></a>                
                <a href = "{{url_for('showPlace')}}">

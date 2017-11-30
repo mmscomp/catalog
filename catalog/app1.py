@@ -468,7 +468,8 @@ def showSports():
     if 'username' not in login_session:
         return render_template('publicsports.html', sports=sports)
     else:
-        return render_template('sports.html', sports=sports)
+        return render_template('sports.html', sports=sports,
+                               id=login_session['user_id'])
 
 
 @app.route('/catalog/sports/<name>')
@@ -484,7 +485,8 @@ def showSportsItem(name):
     else:
         return render_template('sportsitem.html', sports=sports,
                                sportsItem=sportsItem,
-                               creator_id=creator.id)
+                               creator_id=creator.id,
+                               id=login_session['user_id'])
 
 
 # Entertainment
@@ -498,7 +500,9 @@ def showEntertainment():
                                entertainment=entertainment)
     else:
         return render_template('entertainment.html',
-                               entertainment=entertainment)
+                               entertainment=entertainment,
+                               id=login_session['user_id'])
+
 
 
 @app.route('/catalog/entertainment/<name>')
@@ -521,7 +525,9 @@ def showEntertainmentItem(name):
         return render_template('entertainmentitem.html',
                                entertainment=entertainment,
                                entertainmentItem=entertainmentItem,
-                               creator_id=creator.id)
+                               creator_id=creator.id,
+                               id=login_session['user_id'])
+
 
 
 @app.route('/catalog/business/')
@@ -531,7 +537,9 @@ def showBusiness():
     if 'username' not in login_session:
         return render_template('publicbusiness.html', business=business)
     else:
-        return render_template('business.html', business=business)
+        return render_template('business.html', business=business,
+                               id=login_session['user_id'])
+
 
 
 @app.route('/catalog/business/<name>')
@@ -549,7 +557,9 @@ def showBusinessItem(name):
     else:
         return render_template('businessitem.html', business=business,
                                businessItem=businessItem,
-                               creator_id=creator.id)
+                               creator_id=creator.id,
+                               id=login_session['user_id'])
+
 
 
 @app.route('/catalog/education/')
@@ -578,7 +588,9 @@ def showEducationItem(name):
         return render_template('educationitem.html',
                                education=education,
                                educationItem=educationItem,
-                               creator_id=creator.id)
+                               creator_id=creator.id,
+                               id=login_session['user_id'])
+
 
 @app.route('/catalog/read/')
 def showRead():
@@ -586,7 +598,9 @@ def showRead():
     if 'username' not in login_session:
         return render_template('publicread.html', read=read)
     else:
-        return render_template('read.html', read=read)
+        return render_template('read.html', read=read,
+                               id=login_session['user_id'])
+
 
 
 @app.route('/catalog/read/<name>')
@@ -605,7 +619,9 @@ def showReadItem(name):
         return render_template('readitem.html',
                                read=read,
                                readItem=readItem,
-                               creator_id=creator.id)
+                               creator_id=creator.id,
+                               id=login_session['user_id'])
+
 
 @app.route('/catalog/diary/')
 def showDiary():
@@ -613,7 +629,8 @@ def showDiary():
     if 'username' not in login_session:
         return render_template('publicdiary.html', diary=diary)
     else:
-        return render_template('diary.html', diary=diary)
+        return render_template('diary.html', diary=diary,
+                               id=login_session['user_id'])
 
 
 @app.route('/catalog/diary/<name>')
@@ -672,7 +689,9 @@ def showPrivateDiaryItem(id, name):
     else:
         return render_template('privatediaryitem.html', pdiary=pdiary,
                                pdiaryItem=pdiaryItem,
-                               creator_id=creator.id)
+                               creator_id=creator.id,
+                               id=login_session['user_id'])
+
 # Maps of Places
 @app.route('/catalog/publicplace.html/')
 def showPlace():
