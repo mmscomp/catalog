@@ -663,7 +663,7 @@ def showPrivateDiary(id):
        login_session['user_id']:
         return render_template('diary.html', diary=diary)
     else:
-        return render_template('privateDiary.html', pdiary=pdiary)
+        return render_template('privateDiary.html', pdiary=pdiary, id=id)
 
 @app.route('/catalog/privatediaryitem/<id>/<name>')
 def showPrivateDiaryItem(id, name):
