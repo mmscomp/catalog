@@ -501,10 +501,10 @@ def showSportsItemType(name,e1):
    
     if 'username' not in login_session or creator.id != \
        login_session['user_id']:
-        return render_template('publicsportsitem.html',
+        return render_template('publicsportsitemtype.html',
                                sports=sports,
                                sportsItem=sportsItem,
-                               name=name)
+                               name=name, type1=e1)
     else:
         return render_template('sportsitemtype.html',
                                sports=sports,
@@ -566,10 +566,10 @@ def showEntertainmentItemType(name,e1):
     print 1000, creator, entertainmentItem
     if 'username' not in login_session or creator.id != \
        login_session['user_id']:
-        return render_template('publicentertainmentitem.html',
+        return render_template('publicentertainmentitemtype.html',
                                entertainment=entertainment,
                                entertainmentItem=entertainmentItem,
-                               name=name)
+                               name=name, type1=e1)
     else:
         return render_template('entertainmentitemtype.html',
                                entertainment=entertainment,
