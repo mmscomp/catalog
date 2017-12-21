@@ -489,6 +489,30 @@ def showSportsItem(name):
                                id=login_session['user_id'])
 
 
+#Sports type
+@app.route('/catalog/sports/<name>/<e1>')
+def showSportsItemType(name,e1):
+    sports = session.query(
+        Sports).order_by(asc(Sports.name))
+    sportsOne = session.query(Sports).filter_by(name=name).one()
+    creator = getUserInfo(sportsOne.user_id)
+    sportsItem = session.query(Sports).filter_by(
+                        name=name).all()
+   
+    if 'username' not in login_session or creator.id != \
+       login_session['user_id']:
+        return render_template('publicsportsitem.html',
+                               sports=sports,
+                               sportsItem=sportsItem,
+                               name=name)
+    else:
+        return render_template('sportsitemtype.html',
+                               sports=sports,
+                               sportsItem=sportsItem,
+                               creator_id=creator.id,
+                               id=login_session['user_id'],
+                               name=name, type1=e1)
+
 # Entertainment
 @app.route('/catalog/entertainment/')
 def showEntertainment():
@@ -528,6 +552,31 @@ def showEntertainmentItem(name):
                                creator_id=creator.id,
                                id=login_session['user_id'])
 
+#
+@app.route('/catalog/entertainment/<name>/<e1>')
+def showEntertainmentItemType(name,e1):
+    entertainment = session.query(
+        Entertainment).order_by(asc(Entertainment.name))
+    print 502, entertainment
+    entertain = session.query(Entertainment).filter_by(name=name).one()
+    print 504, getUserInfo(entertain.user_id)
+    creator = getUserInfo(entertain.user_id)
+    entertainmentItem = session.query(Entertainment).filter_by(
+                        name=name).all()
+    print 1000, creator, entertainmentItem
+    if 'username' not in login_session or creator.id != \
+       login_session['user_id']:
+        return render_template('publicentertainmentitem.html',
+                               entertainment=entertainment,
+                               entertainmentItem=entertainmentItem,
+                               name=name)
+    else:
+        return render_template('entertainmentitemtype.html',
+                               entertainment=entertainment,
+                               entertainmentItem=entertainmentItem,
+                               creator_id=creator.id,
+                               id=login_session['user_id'],
+                               name=name, type1=e1)
 
 
 @app.route('/catalog/business/')
