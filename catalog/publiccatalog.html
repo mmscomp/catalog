@@ -1,0 +1,44 @@
+{% include "main.html" %}
+{% include "header.html" %}
+	<div class="row top-menu">
+		<div class="col-md-10"></div>
+		<div class="col-md-2 text-right">
+					</div>
+	</div>
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>Catalog</h1>
+		</div>
+
+<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+
+<div class= "catalog">
+               <a href = "{{url_for('showSports')}}">
+                                                <h3>SportsS</h3></a>
+               <a href = "{{url_for('showEntertainment')}}">
+                                                <h3>Entertainment</h3></a>
+               <a href = "{{url_for('showEducation')}}">
+                                                <h3>Education</h3></a>
+               <a href = "{{url_for('showBusiness')}}">
+                                                <h3>Business</h3></a>
+               <a href = "{{url_for('showDiary')}}">
+                                                <h3>Diary</h3></a>
+               <a href = "{{url_for('showRead')}}">
+                                                <h3>Read</h3></a>	
+</div>
+</html>

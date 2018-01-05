@@ -5,47 +5,85 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Paris</title>
+    <title>City</title>
     <link rel="stylesheet" href="/static/css/style.css?q=1280549780">
+    <link rel="stylesheet" href="/static/css/font-awesome.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+
 </head>
 
 <body>
-    <header class="header_container">
-    <div class="cat">
-      <a href="{{url_for('showCatalog')}}"> <h2>Category</h2></a>
+    <header class="container">
+        <ul>
+
+            <li>
+                <a href="{{url_for('showCatalog')}}"> <i class="fa fa-home"></i></a>
+            </li>
+            <li>
+                <a href="http://twitter.com"> <i class="fa fa-twitter"></i></a>
+            </li>
+            <li><a href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+            <li>
+                <a href="http://www.plus.google.com"> <i class="fa fa-google-plus"></i></a>
+            </li>
+            <li>
+                <a href="https://linkedin.com/in/manoj-shrestha"> <i class="fa fa-linkedin"></i></a>
+            </li>
+            <li><a href="https://www.github.com/mmscomp"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+
+
+        </ul>
+
+    </header>
+    <div class="header-container">
+        <!--    <div class="cat">
+            <a href="{{url_for('showCatalog')}}">
+                <h2>Category</h2>
+            </a>
+        </div>
+    -->
+        <div class="sel">
+            <h2>Enter a city</h2>
+        </div>
+        <div class="loc">
+            <h2>Map</h2>
+        </div>
     </div>
-     <div class="sel">
-         <h2>Select   Location</h2>
-     </div>
-     <div class="loc">
-        <h2>Map</h2>
-     </div>
-   </header>
+
     <!--  <div class="container">-->
     <div id="menu">
-<div class="categorie">
-               <a href = "{{url_for('showSports')}}">
-                                                <h3>Sports</h3></a>
-               <a href = "{{url_for('showEntertainment')}}">
-                                                <h3>Entertainment</h3></a>
-               <a href = "{{url_for('showEducation')}}">
-                                                <h3>Education</h3></a>
-               <a href = "{{url_for('showBusiness')}}">
-                                                <h3>Business</h3></a>
-               <a href = "{{url_for('showDiary')}}">
-                                                <h3>Diary</h3></a>
-               <a href = "{{url_for('showRead')}}">
-                                                <h3>Read</h3></a>                
-               <a href = "{{url_for('showPlace')}}">
-                                                 <h3>Maps of Places</h3></a>
-</div>
-
+        <!--      <div class="categorie">
+            <a href="{{url_for('showSports')}}">
+                <h3>Sports</h3>
+            </a>
+            <a href="{{url_for('showEntertainment')}}">
+                <h3>Entertainment</h3>
+            </a>
+            <a href="{{url_for('showEducation')}}">
+                <h3>Education</h3>
+            </a>
+            <a href="{{url_for('showBusiness')}}">
+                <h3>Business</h3>
+            </a>
+            <a href="{{url_for('showDiary')}}">
+                <h3>Diary</h3>
+            </a>
+            <a href="{{url_for('showRead')}}">
+                <h3>Read</h3>
+            </a>
+            <a href="{{url_for('showPlace')}}">
+                <h3>Maps of Places</h3>
+            </a>
+        </div>
+    -->
         <div class="inSelect">
-      <a href="#" data-bind="click: function() {$root.findCity(city)}">
-        <span data-bind = "text: city"></span><br>
-      </a>
-        <input data-bind="textInput: city"> <!--"value: city, valueUpdate: 'afterkeydown'">-->
-  <!-- <span data-bind="text: city ? $root.findCity(city):''"></span>-->
+            <a href="#" data-bind="click: function() {$root.findCity(city)}">
+                <span data-bind="text: city"></span><br>
+            </a>
+            <input data-bind="textInput: city">
+            <!--"value: city, valueUpdate: 'afterkeydown'">-->
+            <!-- <span data-bind="text: city ? $root.findCity(city):''"></span>-->
         </div>
 
         <div id="map"></div>

@@ -5,9 +5,8 @@
 
 <div class="catalog">
 <div class="arrow">
-<a href="{{url_for('showSportsItem', name=name)}}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+   <a href="{{url_for('showBusiness')}}"><i class="fa fa-arrow-left" aria-hidden=                                          "true"></i></a>
 </div>
-
 <div class="categorie">
                <a href = "{{url_for('showSports')}}">
                                                 <h3>Sports</h3></a>
@@ -17,46 +16,35 @@
                                                 <h3>Education</h3></a>
                <a href = "{{url_for('showBusiness')}}">
                                                 <h3>Business</h3></a>
-               {% if 'username' in session %}
-               <a href = "{{url_for('showPrivateDiary', id=id)}}">
+               <a href = "{{url_for('showDiary')}}">
                                                 <h3>Diary</h3></a>
-               {% else %}
-               <a href="{{url_for('showDiary')}}">
-                                               <h3>Diary</h3></a>
-               {%endif%}
-
                <a href = "{{url_for('showRead')}}">
-                                                <h3>Read</h3></a>                
+                                                <h3>Read</h3></a>                 
                <a href = "{{url_for('showPlace')}}">
                                                  <h3>Maps of Places</h3></a>
 </div>
 <div class="category">
-<h2 style {width:800px}>Sports<h2>
-{% for data in sports %}
-<a href="{{url_for('showSportsItem', name = data.name)}}">
+<h2>Business</h2>
+{% for data in business %}
+<a href="{{url_for('showBusinessItem', name = data.name)}}">
 <h3>{{data.name}}</h3>
 </a>
 {%endfor%}
 </div>
 
 <div class="item">
-{% for data in sportsItem %}
+{% for data in businessItem %}
 <h2>{{data.name}}</h2>
 <h3 id="intro">Description</h3>
 <p>{{data.description}}</p>
-<h3 id="fav">Favorites</h3>
-<a href="{{url_for('showSportsItemType', name=data.name, e1=data.favorite)}}"><p>{{data.favorite}}</p></a>
-{% if type1=='World Cup 2018 teams'%}
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eGRyAtAjLlo" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe><br>
-{% endif%}
-{% if type1=='Soccer clip'%}
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nzHSYVYulHQ" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe><br>
-{% endif%}
-<a href="{{url_for('showLogin')}}">Edit</a>&nbsp; |
-<a href="{{url_for('showLogin')}}">Delete</a>
+<h3 id="fav">Favorite</h3>
+<p>{{data.favorite}}</p>
+<a href="{{url_for('showLogin', name = data.name )}}">Edit</a>|
+<a href="{{url_for('showLogin', name = data.name)}}">Delete</a>
 {%endfor%}
 </div>
 </div>
+
 <div class = 'flash'>
                       {% with messages = get_flashed_messages() %}
       {% if messages %}
