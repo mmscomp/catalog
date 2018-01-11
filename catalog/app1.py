@@ -641,6 +641,31 @@ def showEducationItem(name):
                                id=login_session['user_id'])
 
 
+#
+@app.route('/catalog/education/<name>/<e1>')
+def showEducationItemType(name,e1):
+    education = session.query(
+        Education).order_by(asc(Education.name))
+    educationOne = session.query(Education).filter_by(name=name).one()
+    creator = getUserInfo(educationOne.user_id)
+    educationItem = session.query(Education).filter_by(
+                        name=name).all()
+
+    if 'username' not in login_session or creator.id != \
+       login_session['user_id']:
+        return render_template('publiceducationitemtype.html',
+                               education=education,
+                               educationItem=educationItem,
+                               name=name, type1=e1)
+    else:
+        return render_template('educationitemtype.html',
+                               education=education,
+                               educationItem=educationItem,
+                               creator_id=creator.id,
+                               id=login_session['user_id'],
+                               name=name, type1=e1)
+
+
 @app.route('/catalog/read/')
 def showRead():
     read = session.query(Read).order_by(asc(Read.name))
@@ -670,6 +695,8 @@ def showReadItem(name):
                                readItem=readItem,
                                creator_id=creator.id,
                                id=login_session['user_id'])
+
+
 
 
 @app.route('/catalog/diary/')
@@ -704,12 +731,11 @@ def showPrivateDiary(id):
     pdiary = session.query(PrivateDiary).order_by(asc(PrivateDiary.name)).filter_by(user_id=id).all()
    # diaryItemUser = session.query(PrivateDiary).filter_by(name=name).one()
     if len(pdiary) != 0:
-        creator = getUserInfo(pdiary[0].user_id)#diaryItemUser.user_id)
+        creator = getUserInfo(pdiary[0].user_id)
     
     if 'username' not in login_session:
         return render_template('publicdiary.html', diary=diary)
-    elif 'username'  in login_session and len(pdiary) > 0 and creator.id != \
-       login_session['user_id']:
+    elif  len(pdiary) > 0 and login_session['user_id'] != creator.id:
         return render_template('diary.html', diary=diary)
     else:
         return render_template('privateDiary.html', pdiary=pdiary, id=id)
@@ -718,27 +744,24 @@ def showPrivateDiary(id):
 def showPrivateDiaryItem(id, name):
     print 2000, id
     diary = session.query(Diary).order_by(asc(Diary.name))
-   # pdiary = session.query(PrivateDiary).order_by(asc(PrivateDiary.name))
     pdiary = session.query(PrivateDiary).order_by(asc(PrivateDiary.name)).filter_by(user_id=id).all()
     
-  #  diaryItemUser = session.query(PrivateDiary).filter_by(name=name).one()
+    
     creator = getUserInfo(pdiary[0].user_id)
     diaryItem = session.query(Diary).filter_by(name=name).all()
     pdiaryItem = session.query(PrivateDiary).filter_by(name=name).all()
 
-    if 'username' not in login_session or creator.id != \
-       login_session['user_id']:
+    if 'username' not in login_session or login_session['user_id'] \
+        != creator.id:
         return render_template('publicdiaryitem.html',
                                diary=diary, diaryItem=diaryItem)
-    elif 'username'  in login_session and creator.id != \
-       login_session['user_id']:
+    elif 'username'  in login_session and login_session['user_id'] \
+         != creator.id:
         return render_template('diaryitem.html', diary=diary,
-                               diaryItem=diaryItem,
-                               creator_id=creator.id)
+                               diaryItem=diaryItem)
     else:
         return render_template('privatediaryitem.html', pdiary=pdiary,
                                pdiaryItem=pdiaryItem,
-                               creator_id=creator.id,
                                id=login_session['user_id'])
 
 # Maps of Places
@@ -1267,6 +1290,9 @@ def deletePrivateDiary(name):
     else:
         return render_template('deletePrivateDiary.html', id=id, diary=diaryToDelete)
 
+@app.route('/blog')
+def showBlog():
+    return render_template('publicblog.html')
 
 # disconnect based on provider
 @app.route('/disconnect')
