@@ -11,7 +11,8 @@ from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
 from app1DB import engine, Base, User,  Sports, Entertainment,\
-                   Education, Business, Diary, Read, PrivateDiary
+                   Education, Business, Diary, Read, PrivateDiary,\
+                   Fame
 
 from oauth2client.client import flow_from_clientsecrets
 
@@ -696,7 +697,14 @@ def showReadItem(name):
                                creator_id=creator.id,
                                id=login_session['user_id'])
 
-
+@app.route('/catalog/famous/')
+def showFamous():
+    fame = session.query(Fame).order_by(asc(Fame.name))
+    if 'username' not in login_session:
+        return render_template('publicfamous.html', fame=fame)
+    else:
+        return render_template('famous.html', fame=fame,
+                               id=login_session['user_id'])
 
 
 @app.route('/catalog/diary/')
