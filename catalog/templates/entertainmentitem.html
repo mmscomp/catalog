@@ -44,9 +44,9 @@
 <h2>{{data.name}}</h2>
 <h3 id="intro">Description</h3>
 <p>{{data.description}}</p>
-<h3 id="fav">Favorite</h3>
-<p>{{data.favorite}}</p>
-<a href="{{url_for('editEntertainment', name = data.name )}}">Edit</a>|
+<h3 id="fav">Favorites</h3>
+<a href="{{url_for('showEntertainmentItemType', name=data.name, e1=data.favorite)}}"><p>{{data.favorite}}</p></a>
+<a href="{{url_for('editEntertainment', name = data.name )}}">Edit</a> &nbsp;|
 <a href="{{url_for('deleteEntertainment', name = data.name)}}">Delete</a>
 {%endfor%}
 </div>
@@ -65,7 +65,6 @@
 </div>
 </div>
 <footer>
-<a href="{{url_for('showCatalog')}}">go Back</a>
 </footer>
 
 </body>

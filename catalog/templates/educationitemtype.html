@@ -47,6 +47,19 @@
 <h3 id="fav">Favorite</h3>
 <a href="{{url_for('showEducationItemType', name=data.name, e1=data.favorite)}}">
 <p>{{data.favorite}}</p></a>
+{% if type1=='Isa News Live' %}
+ <iframe width="500" height="315" 
+ src="https://www.youtube.com/embed/XfZ_-s07Vsk"
+frameborder="0" gesture="media"
+allow="encrypted-media" allowfullscreen></iframe>
+{% endif %}
+{% if type1=='Uncertainty Principle' %}
+ <iframe width="500" height="315" 
+ src="https://www.youtube.com/embed/ql1UN6hcymI"
+frameborder="0" gesture="media"
+allow="encrypted-media" allowfullscreen></iframe>
+{% endif %}
+
 <a href="{{url_for('editEducation', name = data.name )}}">Edit</a>|
 <a href="{{url_for('deleteEducation', name = data.name)}}">Delete</a>
 {%endfor%}
@@ -66,7 +79,6 @@
 </div>
 </div>
 <footer>
-<a href="{{url_for('showEducation')}}">go Back</a>
 </footer>
 
 </body>
