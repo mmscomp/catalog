@@ -1,9 +1,37 @@
+var site = function(place) {
+    this.place = place;
+}
+
 var Place = function(name, location) {
     this.name = name;
     this.location = location;
 };
 
 var viewModel = {};
+//
+viewModel.places = [new site('restaurant'),
+    new site('indian restaurant'),
+//    new site('eatery'),
+    new site('parks'),
+    new site('cinema'),
+    new site('libraries'),
+    new site('schools'),
+//    new site('tourist spots'),
+    new site('shopping center'),
+    new site('hotel'),
+    new site('coffee shop'),
+    new site('groceries'),
+    new site('colleges'),
+    new site('university'),
+    new site('department stores'),
+    new site('banks'),
+    new site('stores'),
+    new site('salon'),
+    new site('gas stations'),
+    new site('temples'),
+//    new site('sports centers')
+];
+
 
 //
 viewModel.locations = [new Place(
