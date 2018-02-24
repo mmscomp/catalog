@@ -37,12 +37,6 @@
 
     </header>
     <div class="header-container">
-        <!--    <div class="cat">
-            <a href="{{url_for('showCatalog')}}">
-                <h2>Category</h2>
-            </a>
-        </div>
-    -->
         <div class="sel">
             <h2>Enter a city</h2>
         </div>
@@ -51,44 +45,51 @@
         </div>
     </div>
 
-    <!--  <div class="container">-->
     <div id="menu">
-        <!--      <div class="categorie">
-            <a href="{{url_for('showSports')}}">
-                <h3>Sports</h3>
-            </a>
-            <a href="{{url_for('showEntertainment')}}">
-                <h3>Entertainment</h3>
-            </a>
-            <a href="{{url_for('showEducation')}}">
-                <h3>Education</h3>
-            </a>
-            <a href="{{url_for('showBusiness')}}">
-                <h3>Business</h3>
-            </a>
-            <a href="{{url_for('showDiary')}}">
-                <h3>Diary</h3>
-            </a>
-            <a href="{{url_for('showRead')}}">
-                <h3>Read</h3>
-            </a>
-            <a href="{{url_for('showPlace')}}">
-                <h3>Maps of Places</h3>
-            </a>
-        </div>
-    -->
         <div class="inSelect">
-            <a href="#" data-bind="click: function() {$root.findCity(city)}">
-                <span data-bind="text: city"></span><br>
-            </a>
-            <input data-bind="textInput: city">
-            <!--"value: city, valueUpdate: 'afterkeydown'">-->
-            <!-- <span data-bind="text: city ? $root.findCity(city):''"></span>-->
+            <div class="opt">
+                <div class="sel">
+                    <input data-bind="textInput: city">
+                </div>
+                <div class="place">
+                    <a href="#" data-bind="click: function() {$root.findCity(city)}">
+                        <span data-bind="text: city"></span>
+                        <br>
+                    </a>
+                </div>
+            </div>
+            <span data-bind="with: city "></span>
+            <div class="opt">
+                <div class="sel">
+                    <p>
+                        <select data-bind="options: places, optionsText: 'place', value: selectedPlace"></select>
+                    </p>
+                </div>
+                <div data-bind="visible: selectedPlace">
+                    <span data-bind="with: places"></span>
+                    <div class="place">
+                        <a href="#" data-bind="click: function () {$root.searchPlaces(selectedPlaceText())}">
+                           <p data-bind="text: selectedPlaceText"></p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <p data-bind="text: placeList[0]">  </p>
+            <ul data-bind="foreach: placeList">
+                <li>
+                    <a href="#" data-bind="click: function() {$root.clickMeDOM(name)}">
+                        <span data-bind="text: name "></span>
+                    </a>
+                    <span data-bind="text: name ? $root.allMarkers(name):''"></span>
+
+                </li>
+            </ul>
+
         </div>
+
 
         <div id="map"></div>
     </div>
-    <!--  </div> -->
 
     <script src="/static/bower_component/knockout.js"></script>
     <script src="/static/js/libs/jquery.min.js"></script>
