@@ -280,9 +280,6 @@
             margin-left: 0;
             margin-right: 0;
             display: flex;
-            /*  position: relative;
-             margin: auto;
-             overflow: hidden;*/
             flex-basis: 50%;
             background: #fff;
             border-right: 1pt solid black;
@@ -290,14 +287,14 @@
         
         #map {
             width: 75%;
-            flex: 0 75%;
+            flex: 0 0 75%;
             margin-left: auto;
             position: relative;
             height: 800px;
         }
         
         .inSelect {
-            width: 25%;
+            width: 90%;
             background: lightblue;
         }
         
@@ -308,6 +305,46 @@
             font-weight: 2em;
             font-size: 18pt;
         }
+        .sel>input {
+            width: 90%;
+            font-size: 18pt;
+        }
+
+        .opt {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .sel {
+            width: 50%;
+            margin: 0;
+        }
+
+        .place {
+            width: 50%;
+            text-align: center;
+        }
+
+        .place>p {
+            color: blue;
+        }
+
+        p>select {
+            width: 100%;
+            height: 40px;
+            font-size: 18pt;
+        }
+
+      li>a>span {
+           margin-left: -35px;
+           font-size: 12pt;
+         }
+
+      li> a > span:hover {
+       background-color: red;
+      }
+
+
         
         span {
             width: 100%;
