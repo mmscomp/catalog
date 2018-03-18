@@ -4,6 +4,9 @@
 <div class="cantainer">
 
 <div class="catalog">
+<div class="arrow">
+  <a href="{{url_for('showCatalog')}}"><i class="fa fa-arrow-left" aria-hidden=true></i></a>
+</div>
 <div class="categorie">
                <a href = "{{url_for('showSports')}}">
                                                 <h3>Sports</h3></a>
@@ -17,52 +20,21 @@
                                                 <h3>Diary</h3></a>
                <a href = "{{url_for('showRead')}}">
                                                 <h3>Read</h3></a>                
-              <a href="{{url_for('showFamous')}}">
+               <a href="{{url_for('showFamous')}}">
                                                <h3>Famous People</h3></a>
-               <a href="{{url_for('showBlog')}}">
-                                               <h3>Blog</h3></a>
+               <a href = "{{url_for('showBlog')}}">
+                                                <h3>Blog</h3></a>
                <a href = "{{url_for('showPlace')}}">
                                                  <h3>Maps of Places</h3></a>
 </div>
 <div class="category">
-<h2>Diary<h2>
-{% for data in diary %}
-<a href="{{url_for('showDiaryItem', name = data.name)}}">
+<h2>My Blog<h2>
+
+<a href="http://localhost:5000/static/image/Syllabus.pdf">Syllabus2018</a>
+
+{% for data in sports %}
+<a href="{{url_for('showSportsItem', name = data.name)}}">
 <h3>{{data.name}}</h3>
 </a>
 {%endfor%}
-</div>
 
-<div class="item">
-{% for data in diaryItem %}
-<h2>{{data.name}}</h2>
-<h3 id="intro">Title</h3>
-<p>{{data.title}}</p>
-<h3 id="intro">Description</h3>
-<p>{{data.description}}</p>
-<h3 id="fav">Date</h3>
-<p>{{data.date}}</p>
-<a href="{{url_for('editDiary', name = data.name )}}">Edit</a>|
-<a href="{{url_for('deleteDiary', name = data.name)}}">Delete</a>
-{%endfor%}
-</div>
-</div>
-
-<div class = 'flash'>
-                      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-        {% for message in messages %}
-            <li> <strong> {{ message }} </strong> </li>
-        {% endfor %}
-        </ul>
-        {% endif %}
-    {% endwith %}
-</div>
-</div>
-<footer>
-<a href="{{url_for('showDiary')}}">go Back</a>
-</footer>
-
-</body>
-</html>
