@@ -47,13 +47,21 @@
 <h3 id="fav">Favorites</h3>
 
 <a href="{{url_for('showSportsItemType', name=data.name, e1=data.favorite)}}"><p>{{data.favorite}}</p></a>
-<div id="wiki" ondblclick=loadWiki()><h2>Wiki Links</h2></div>
-<!--{% if type1=='World Cup 2018 teams'%}-->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eGRyAtAjLlo" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe><br>
-<!--{% endif%}-->
-<!--{% if type1=='Soccer clip'%}-->
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nzHSYVYulHQ" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe><br>
-<!--{% endif%}-->
+<!--<div id="wiki" ondblclick=loadWiki()><h2>Wiki Links</h2></div>-->
+<div id="wiki"><h2 >Wiki Links</h2></div>
+  <div id="login-container" class="pre-auth">This application requires access to your YouTube account.
+    Please <a href="#" id="login-link">authorize</a> to continue.
+  </div>
+<!--
+   <div id="buttons">
+      <label> <input id="query" value={{data.favorite}} type="text"/><button id="search-button" disabled onclick="search()">Search</button></label>
+    </div>
+-->
+    <div id="search" name="{{data.favorite}}" onclick="search()"><h2>Youtube vdo</h2></div>
+    <div id="search-container">
+    </div>
+
+
 <a href="{{url_for('editSports', name = data.name )}}">Edit</a>&nbsp; |
 <a href="{{url_for('deleteSports', name = data.name)}}">Delete</a>
 {%endfor%}
@@ -71,9 +79,8 @@
     {% endwith %}
 </div>
 </div>
-<footer>
-</footer>
     <script src="/static/js/libs/jquery.min.js"></script>
+<!--
 <script>
  var sub = $('#sub').text();
 console.log("1 " + sub);
@@ -107,6 +114,6 @@ var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + su
     });
 }
 </script>
-
+-->
 </body>
 </html>
