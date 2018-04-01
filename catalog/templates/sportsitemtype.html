@@ -61,7 +61,9 @@
     <div id="search-container">
     </div>
 
-
+<div id="btn">
+   <button id="prev" onclick="prev()">Prev</button> <button id="next" onclick="next()">Next</button>
+</div>
 <a href="{{url_for('editSports', name = data.name )}}">Edit</a>&nbsp; |
 <a href="{{url_for('deleteSports', name = data.name)}}">Delete</a>
 {%endfor%}
