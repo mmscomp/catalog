@@ -80,6 +80,9 @@ console.log('70 '+ idx);
 // Search for a specified string.
 function search() {
   var q = $('#search').attr('name');
+
+  var x = document.getElementById("btn");
+      x.style.display = "inline";
   var request = gapi.client.youtube.search.list({
     q: q,
     part: 'snippet'
