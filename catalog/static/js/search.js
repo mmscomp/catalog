@@ -82,7 +82,8 @@ function search() {
   var q = $('#search').attr('name');
 
   var x = document.getElementById("btn");
-      x.style.display = "inline";
+      x.style.display = "flex";
+      x.style.justifyContent = "center";
   var request = gapi.client.youtube.search.list({
     q: q,
     part: 'snippet'
