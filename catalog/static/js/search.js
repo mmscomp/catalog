@@ -45,6 +45,38 @@ function handleAPILoaded() {
   $('#search').attr('disabled', false);
 }
 
+// indexing up
+function next(){
+ if (idx >= 4){
+     idx = 4;
+  search();
+   $('#button2').attr('disabled', true);
+}else{
+   $('#button1').attr('disabled', false);
+   $('#button2').attr('disabled', false);
+    search();
+    idx++;
+}
+}
+
+//indexing down
+function prev(){
+if(idx <= 0){
+   idx = 0;
+   $('#button1').attr('disabled', true);
+   
+console.log('70 '+ idx);
+   search();
+}else{
+   
+   $('#button2').attr('disabled', false);
+   $('#button1').attr('disabled', false);
+   search();
+   --idx;
+}
+}
+
+
 // Search for a specified string.
 function search() {
   var q = $('#search').attr('name');
