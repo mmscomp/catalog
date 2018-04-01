@@ -325,3 +325,7 @@
             display: flex;
             justify-content: space-between;
         }
+
+       #btn {
+          display: none;
+       }
