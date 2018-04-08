@@ -21,7 +21,8 @@
 <h3 id="intro">Description</h3>
 <p>{{data.description}}</p>
 <h3 id="fav">Favorite</h3>
-<p>{{data.favorite}}</p>
+<a href="{{url_for('showReadItemType', name=data.name, e1=data.favorite)}}"><p>{{data.favorite}}</p></a>
+
 <a href="{{url_for('editRead', name = data.name )}}">Edit</a>|
 <a href="{{url_for('deleteRead', name = data.name)}}">Delete</a>
 {%endfor%}
