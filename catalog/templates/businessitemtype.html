@@ -24,7 +24,21 @@
 <h3 id="intro">Description</h3>
 <p>{{data.description}}</p>
 <h3 id="fav">Favorite</h3>
-<p>{{data.favorite}}</p>
+<a href="{{url_for('showReadItemType', name=data.name, e1=data.favorite)}}"><p>{{data.favorite}}</p></a>
+<div id="wiki"><h2 >Wiki Links</h2></div>
+  <div id="login-container" class="pre-auth">This application requires access to your YouTube account.
+    Please <a href="#" id="login-link">authorize</a> to continue.
+  </div>
+<div id-"book"><h2>Google Book</h2></div>
+    <div id="search" name="{{data.favorite}}" onclick="search()"><h2>Youtube vdo</h2></div>
+    <div id="search-container">
+    </div>
+    <div id="btn">
+   <button id="button1" name="Prev"  onclick="prev()">Prev</button>  <button id="button2" name="Next" onclick="next()">Next</button>
+    </div>
+<br>
+
+
 <a href="{{url_for('editBusiness', name = data.name )}}">Edit</a>|
 <a href="{{url_for('deleteBusiness', name = data.name)}}">Delete</a>
 {%endfor%}
@@ -43,6 +57,9 @@
     {% endwith %}
 </div>
 </div>
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/search.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
 </body>
 </html>
