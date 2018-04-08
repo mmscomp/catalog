@@ -6,6 +6,10 @@
 <div class="catalog">
 {% include "cata.html" %}
 
+<div class="arrow">
+<a href="{{url_for('showRead')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+</div>
+
 <div class="category">
 <h2>Read<h2>
 {% for data in read %}
