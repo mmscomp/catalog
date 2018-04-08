@@ -1,0 +1,63 @@
+{% include "main.html" %}
+<body>
+{% include "header.html" %}
+<div class="cantainer">
+
+<div class="catalog">
+{% include "cata.html" %}
+
+<div class="category">
+<h2>Read<h2>
+{% for data in read %}
+<a href="{{url_for('showReadItem', name = data.name)}}">
+<h3>{{data.name}}</h3>
+</a>
+{%endfor%}
+</div>
+
+<div class="item">
+{% for data in readItem %}
+<h2>{{data.name}}</h2>
+<h3 id="intro">Description</h3>
+<p>{{data.description}}</p>
+<h3 id="fav">Favorite</h3>
+<a href="{{url_for('showReadItemType', name=data.name, e1=data.favorite)}}"><p>{{data.favorite}}</p></a>
+
+<div id="wiki"><h2 >Wiki Links</h2></div>
+  <div id="login-container" class="pre-auth">This application requires access to your YouTube account.
+    Please <a href="#" id="login-link">authorize</a> to continue.
+  </div>
+<div id-"book"><h2>Google Book</h2></div>
+    <div id="search" name="{{data.favorite}}" onclick="search()"><h2>Youtube vdo</h2></div>
+    <div id="search-container">
+    </div>
+    <div id="btn">
+   <button id="button1" name="Prev"  onclick="prev()">Prev</button>  <button id="button2" name="Next" onclick="next()">Next</button>
+    </div>
+<br>
+
+
+<a href="{{url_for('editRead', name = data.name )}}">Edit</a>|
+<a href="{{url_for('deleteRead', name = data.name)}}">Delete</a>
+{%endfor%}
+</div>
+</div>
+
+<div class = 'flash'>
+                      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+</div>
+<footer>
+<a href="{{url_for('showRead')}}">Go Back</a>
+</footer>
+
+</body>
+</html>
