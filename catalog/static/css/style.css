@@ -118,6 +118,22 @@
             background: lightgray;
             border-right: 1pt solid blue;
         }
+        .categorieH {
+           display: flex;
+           justify-content: space-between;
+            /*flex-basis: 20%;*/
+            width:  94%;
+            height: auto;
+            padding-bottom: 20px;
+            margin-left: 45px;
+            align-item: center;
+           /* word-wrap: break-word;*/
+            word-break: break-all;
+          /*  line-height: 2em;*/
+            background: lightgray;
+          /*  border-right: 1pt solid blue;*/
+        }
+
 
         .category {
             flex: 0 0 20%;
