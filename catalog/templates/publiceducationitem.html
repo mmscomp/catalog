@@ -7,27 +7,8 @@
 <div class="arrow">
    <a href="{{url_for('showEducation')}}"><i class="fa fa-arrow-left" aria-hidden=                                          "true"></i></a>
 </div>
-<div class="categorie">
-               <a href = "{{url_for('showSports')}}">
-                                                <h3>Sports</h3></a>
-               <a href = "{{url_for('showEntertainment')}}">
-                                                <h3>Entertainment</h3></a>
-               <a href = "{{url_for('showEducation')}}">
-                                                <h3>Education</h3></a>
-               <a href = "{{url_for('showBusiness')}}">
-                                                <h3>Business</h3></a>
-               <a href = "{{url_for('showDiary')}}">
-                                                <h3>Diary</h3></a>
-               <a href = "{{url_for('showRead')}}">
-                                                <h3>Read</h3></a>                 
-              <a href="{{url_for('showFamous')}}">
-                                               <h3>Famous People</h3></a>
-               <a href="{{url_for('showBlog')}}">
-                                               <h3>Blog</h3></a>
-               <a href = "{{url_for('showPlace')}}">
-                                                 <h3>Maps of Places</h3></a>
-</div>
-<div class="category">
+{% include "cata.html"%}
+<div class="categoryP">
 <h2>Education<h2>
 {% for data in education %}
 <a href="{{url_for('showEducationItem', name = data.name)}}">
@@ -36,7 +17,7 @@
 {%endfor%}
 </div>
 
-<div class="item">
+<div class="itemP">
 {% for data in educationItem %}
 <h2>{{data.name}}</h2>
 <h3 id="intro">Description</h3>

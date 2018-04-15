@@ -9,30 +9,8 @@
 </div>
 <div class="arrow">
 </div>
-
-<div class="categorie">
-               <a href = "{{url_for('showSports')}}">
-                                                <h3>Sports</h3></a>
-               <a href = "{{url_for('showEntertainment')}}">
-                                                <h3>Entertainment</h3></a>
-               <a href = "{{url_for('showEducation')}}">
-                                                <h3>Education</h3></a>
-               <a href = "{{url_for('showBusiness')}}">
-                                                <h3>Business</h3></a>
-               <a href = "{{url_for('showDiary')}}">
-                                                <h3>Diary</h3></a>
-               <a href = "{{url_for('showRead')}}">
-                                                <h3>Read</h3></a>                 
-               <a href="{{url_for('showFamous')}}">
-                                               <h3>Famous People</h3></a>
-       
-        <a href="{{url_for('showBlog')}}">
-                                               <h3>Blog</h3></a>
-               <a href = "{{url_for('showPlace')}}">
-                                                 <h3>Maps of Places</h3></a>
-
-</div>
-<div class="category">
+{% include "cata.html"%}
+<div class="categoryP">
 <h2>Diary<h2>
 {% for data in diary %}
 <a href="{{url_for('showDiaryItem', name = data.name)}}">
@@ -42,18 +20,6 @@
 <br>
 <a href="{{url_for('showLogin' )}}">Create</a>
 </div>
-<!--
-<div class="item">
-{% for data in entertainmentItem %}
-<h3 id="intro">Description</h3>
-<p>{{data.description}}</p>
-<h3 id="fav">Favorite</h3>
-<p>{{data.favorite}}</p>
-<a href="{{url_for('editEntertainment', name = data.name )}}">Edit</a>|
-<a href="{{url_for('deleteEntertainment', name = data.name)}}">Delete</a>
-{%endfor%}
-</div>
--->
 </div>
 
 <div class = 'flash'>
