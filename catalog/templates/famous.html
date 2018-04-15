@@ -1,6 +1,8 @@
 {% include "main.html" %}
 <body>
 {% include "header.html" %}
+{% include "cata1.html" %}
+
 <div class="cantainer">
 
 <div class="catalog">
@@ -30,7 +32,6 @@
 <div class="category">
 <h2>My Blog<h2>
 
-<a href="http://localhost:5000/static/image/Syllabus.pdf">Syllabus2018</a>
 
 {% for data in sports %}
 <a href="{{url_for('showSportsItem', name = data.name)}}">
