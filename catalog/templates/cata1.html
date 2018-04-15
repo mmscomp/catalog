@@ -1,0 +1,27 @@
+<div class="categorieH">
+             <div>  <a href = "{{url_for('showPlace')}}">
+                                                <h3>Map</h3></a></div>
+              <div> <a href = "{{url_for('showSports')}}">
+                                                <h3>Sports</h3></a></div>
+              <div> <a href = "{{url_for('showEntertainment')}}">
+                                                <h3>Entertainment</h3></a></div>
+              <div> <a href = "{{url_for('showEducation')}}">
+                                                <h3>Education</h3></a></div>
+              <div> <a href = "{{url_for('showBusiness')}}">
+                                                <h3>Business</h3></a></div>
+          {%if 'username' not in session %}
+              <div> <a href = "{{url_for('showDiary')}}">
+                                                <h3>Diary</h3></a></div>
+          {% else %}
+              <div> <a href = "{{url_for('showPrivateDiary', id=id)}}">
+                                                <h3>Diary</h3></a></div>
+          {% endif %}
+              <div> <a href = "{{url_for('showRead')}}">
+                                                <h3>Read</h3></a></div>
+              <div> <a href="{{url_for('showFamous')}}">
+                                               <h3>Famous People</h3></a></div>
+              <div> <a href="{{url_for('showBlog')}}">
+                                               <h3>Blog</h3></a></div>
+
+</div>
+
