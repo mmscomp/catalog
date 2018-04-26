@@ -1,0 +1,35 @@
+{% include "main.html" %}
+<body>
+{% include "header.html" %}
+{% include "cata.html" %}
+<div class="cantainer">
+
+<div class="catalog">
+<div class="arrow">
+  <a href="{{url_for('showBlog')}}"><i class="fa fa-arrow-left" aria-hidden=true></i></a>
+</div>
+
+
+<div class="category">
+  <h2>Blog </h2>
+  {% for data in blogItem %}
+  <h3 style="text-align: center;">{{data.name}}</h3>
+  {%endfor%}
+</div>
+
+<div class="item">
+{% for data in blogItem %}
+    <h2>{{data.title}}</h2>
+    <h4>{{data.date}}</h4>
+    <p>{{data.description}}</p>
+{%endfor%}
+      <h3>Follow Me</h3>
+</div>
+</div>
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+</div>
+</body>
+</html>
+
