@@ -30,10 +30,9 @@
 <div class="category">
 <h2>My Blog<h2>
 
-<a href="http://localhost:5000/static/image/Syllabus.pdf">Syllabus2018</a>
 
-{% for data in sports %}
-<a href="{{url_for('showSportsItem', name = data.name)}}">
+{% for data in blog %}
+<a href="{{url_for('showBlogItem', name = data.name)}}">
 <h3>{{data.name}}</h3>
 </a>
 {%endfor%}
