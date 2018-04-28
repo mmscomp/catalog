@@ -99,4 +99,37 @@ function search() {
    $('#search-container').html('<iframe src=' + '"https://youtube.com/embed/' + id +'" width=600 height=400 </ifram>');
   });
 }
+//Search for the meaning of the word
+function findMeaning() {
+ $('#meaning1').empty();
+var q = $('#meaning').val();
+ var wordUrl = "http://api.datamuse.com/words?ml=" + q;
+    $.ajax({
+        url: wordUrl,
+        dataType: "json",
+        json: "callback",
+        success: function(response) {
+            var wordList = response;
+            var len;
+            if (wordList.length){
+            len = wordList.length;
+            }else{
+            len=0;
+            }
+            if(wordList.length > 5){
+               len = 5;
+            }
+            for (var i = 0; i < len; i++) {
+
+                wordStr = wordList[i].word;
+                console.log(169, wordStr);
+                $('#meaning1').append('<li>' + wordStr + '</li>');
+            };
+
+      //       console.log("2 " + wordList);
+      //      clearTimeout(wikiRequestTimeout);
+        }
+    });
+
+}
 
